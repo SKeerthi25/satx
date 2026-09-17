@@ -70,7 +70,7 @@ export const CompanyProfilePage: React.FC<PageProps> = ({ onNavigate }) => {
             <div className="space-y-2">
               <h3 className="text-base font-bold text-[#0F172A]">5. Corporate Contact</h3>
               <p className="font-semibold text-[#0F172A]">
-                Address: Flat 30 Webley Court, 3 Sten Close, Enfield, England, EN3 6WX | Email: satx@satxltd.com | Tel: [PHONE NUMBER PLACEHOLDER]
+                Address: Flat 30 Webley Court, 3 Sten Close, Enfield, England, EN3 6WX | Email: satx@satxltd.com | Tel: 07796 729271
               </p>
             </div>
           </div>

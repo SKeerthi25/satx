@@ -127,7 +127,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, onNavig
           </div>
           <div className="flex items-center gap-2.5">
             <Phone className="w-4 h-4 text-[#0284C7] shrink-0" />
-            <span>[PHONE NUMBER PLACEHOLDER]</span>
+            <a href="tel:07796729271" className="font-bold text-[#0284C7]">07796 729271</a>
           </div>
         </div>
       </div>

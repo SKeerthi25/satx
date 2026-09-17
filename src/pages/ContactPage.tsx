@@ -81,7 +81,9 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
               </div>
               <div className="space-y-1">
                 <h4 className="font-bold text-sm text-[#0F172A]">Telephone & Support</h4>
-                <p className="text-xs text-slate-600">[PHONE NUMBER PLACEHOLDER]</p>
+                <a href="tel:07796729271" className="text-xs font-bold text-[#0284C7] hover:underline">
+                  07796 729271
+                </a>
               </div>
             </div>
 

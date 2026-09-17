@@ -38,7 +38,7 @@ QUALITY & SAFETY:
 CONTACT INFORMATION:
 Address: Flat 30 Webley Court, 3 Sten Close, Enfield, England, EN3 6WX
 Email: satx@satxltd.com
-Phone: [PHONE NUMBER PLACEHOLDER]
+Phone: 07796 729271
 © 2026 SATX LTD. All rights reserved.
 `;
     const blob = new Blob([content], { type: 'text/plain' });

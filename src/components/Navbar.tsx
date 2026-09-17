@@ -24,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <header className="sticky top-0 z-40 w-full">
-      {/* Top Corporate Utility Bar - Responsive Hide/Show */}
+      {/* Top Corporate Utility Bar */}
       <div className="bg-gradient-to-r from-[#0369A1] via-[#0284C7] to-[#0C4A6E] text-white text-xs py-2 px-4 sm:px-8 border-b border-[#38BDF8]/20 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 overflow-hidden">
@@ -40,9 +40,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
             <a href="mailto:satx@satxltd.com" className="hover:text-[#BAE6FD] hidden md:inline-block font-semibold transition-colors">
               satx@satxltd.com
             </a>
-            <a href="tel:0000000000" className="hover:text-[#BAE6FD] flex items-center gap-1 font-semibold transition-colors">
+            <a href="tel:07796729271" className="hover:text-[#BAE6FD] flex items-center gap-1 font-bold transition-colors">
               <Phone className="w-3.5 h-3.5 text-[#38BDF8]" />
-              <span>[PHONE PLACEHOLDER]</span>
+              <span>07796 729271</span>
             </a>
             <span className="text-white/30 hidden md:inline">|</span>
             <button
