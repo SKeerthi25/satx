@@ -147,7 +147,7 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
-      <SplashScreen durationMs={5000} />
+      <SplashScreen durationMs={3000} />
       <Navbar currentPath={currentPath} onNavigate={navigateTo} />
       <main className="flex-1">
         {renderPage()}
