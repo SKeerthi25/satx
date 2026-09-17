@@ -170,31 +170,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* SECTION 3: KEY STATISTICS (PLACEHOLDERS AS MANDATED) */}
-      <section className="bg-gradient-to-r from-[#0369A1] via-[#0284C7] to-[#0C4A6E] text-white py-16 px-4 sm:px-8 border-y border-[#38BDF8]/30 shadow-lg">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="space-y-2">
-            <span className="text-3xl sm:text-5xl font-extrabold text-white">XX+</span>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#BAE6FD]">Projects Delivered</h4>
-            <p className="text-[11px] text-slate-200">[EDITABLE PLACEHOLDER]</p>
-          </div>
-          <div className="space-y-2">
-            <span className="text-3xl sm:text-5xl font-extrabold text-white">XX</span>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#BAE6FD]">Years Experience</h4>
-            <p className="text-[11px] text-slate-200">[EDITABLE PLACEHOLDER]</p>
-          </div>
-          <div className="space-y-2">
-            <span className="text-3xl sm:text-5xl font-extrabold text-white">XX+</span>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#BAE6FD]">Skilled Professionals</h4>
-            <p className="text-[11px] text-slate-200">[EDITABLE PLACEHOLDER]</p>
-          </div>
-          <div className="space-y-2">
-            <span className="text-3xl sm:text-5xl font-extrabold text-white">XX%</span>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#BAE6FD]">Client Satisfaction</h4>
-            <p className="text-[11px] text-slate-200">[EDITABLE PLACEHOLDER]</p>
-          </div>
-        </div>
-      </section>
 
       {/* SECTION 4: SERVICES GRID */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
