@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { CookieBanner } from './components/CookieBanner';
+import { SplashScreen } from './components/SplashScreen';
 
 // Import All 31 Pages
 import { HomePage } from './pages/HomePage';
@@ -146,6 +147,7 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
+      <SplashScreen durationMs={5000} />
       <Navbar currentPath={currentPath} onNavigate={navigateTo} />
       <main className="flex-1">
         {renderPage()}
