@@ -152,28 +152,79 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* PROFESSIONAL TEAM PLACEHOLDERS */}
+      {/* PROFESSIONAL LEADERSHIP & TEAM */}
       <section className="bg-[#F8FAFC] py-16 px-4 sm:px-8 border-y border-[#E2E8F0] space-y-10">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#C59B27]">Leadership & Site Team</span>
-            <h2 className="text-3xl font-extrabold text-[#0F172A]">Our Professional Team Structure</h2>
-            <p className="text-xs text-slate-600">Experienced site managers, quantity surveyors, structural engineers, and master tradesmen.</p>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#0284C7]">Leadership & Governance</span>
+            <h2 className="text-3xl font-extrabold text-[#0F172A]">Company Leadership & Team Structure</h2>
+            <p className="text-xs text-slate-600">
+              Direct accountability under experienced executive leadership, certified site management, and dedicated quantity surveyors.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Featured Director Card */}
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl border border-[#BAE6FD] shadow-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 relative overflow-hidden">
+            <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#0C4A6E] to-[#0284C7] text-white flex items-center justify-center shrink-0 shadow-lg border-2 border-[#38BDF8]">
+              <UserCheck className="w-12 h-12 text-[#38BDF8]" />
+            </div>
+
+            <div className="space-y-3 flex-1 text-center sm:text-left">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#0284C7] bg-[#F0F9FF] px-3 py-0.5 rounded-full border border-[#BAE6FD]">
+                  Company Director
+                </span>
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Active • Verified
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F172A]">
+                  Sathishkumar Vijayakumar
+                </h3>
+                <p className="text-xs font-semibold text-[#0369A1] mt-0.5">
+                  Director, SATX LTD • Appointed 14 September 2026
+                </p>
+              </div>
+
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Appointed Director overseeing executive governance, corporate strategy, client contractual transparency, and technical delivery across all domestic construction and residential building operations.
+              </p>
+
+              <div className="pt-2 border-t border-[#F1F5F9] flex flex-wrap items-center gap-4 text-[11px] text-slate-500">
+                <span><strong className="text-[#0F172A]">Registered Office:</strong> Enfield, England, EN3 6WX</span>
+                <span>•</span>
+                <span><strong className="text-[#0F172A]">Companies House:</strong> Verification Complete</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Professional Site & Technical Management Structure */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
             {[
-              { role: 'Managing Director', title: '[TEAM MEMBER PLACEHOLDER]', desc: 'Oversees company operations and client contracts.' },
-              { role: 'Senior Site Manager', title: '[TEAM MEMBER PLACEHOLDER]', desc: 'Directs daily site operations & safety RAMS.' },
-              { role: 'Lead Quantity Surveyor', title: '[TEAM MEMBER PLACEHOLDER]', desc: 'Manages cost estimations & material procurement.' },
-              { role: 'Senior Site Foreman', title: '[TEAM MEMBER PLACEHOLDER]', desc: 'Supervises trade craftsmanship and quality control.' }
+              {
+                role: 'Site Operations & Safety',
+                title: 'Senior Site Management',
+                desc: 'Directs daily site activities, health & safety RAMS assessments, and council Building Control inspections.'
+              },
+              {
+                role: 'Commercial & Estimations',
+                title: 'Lead Quantity Surveying',
+                desc: 'Oversees transparent itemised pricing, client cost reporting, and verified material procurement.'
+              },
+              {
+                role: 'Trade Craftsmanship',
+                title: 'Master Trades & Site Foreman',
+                desc: 'Supervises bricklaying precision, structural carpentry, glazier installations, and snagging inspections.'
+              }
             ].map((member, idx) => (
-              <div key={idx} className="satx-card p-6 bg-white border border-[#E2E8F0] text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-[#0F172A] text-[#C59B27] mx-auto flex items-center justify-center font-bold text-xl border border-[#C59B27]/30">
-                  <Layers className="w-8 h-8" />
+              <div key={idx} className="satx-card p-6 bg-white border border-[#E2E8F0] text-center space-y-3 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 rounded-xl bg-[#0F172A] text-[#38BDF8] mx-auto flex items-center justify-center font-bold text-xl border border-[#38BDF8]/30">
+                  <Layers className="w-7 h-7" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#C59B27]">{member.role}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#0284C7]">{member.role}</span>
                   <h4 className="font-bold text-sm text-[#0F172A] mt-0.5">{member.title}</h4>
                 </div>
                 <p className="text-xs text-slate-500">{member.desc}</p>

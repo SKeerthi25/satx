@@ -35,7 +35,8 @@ QUALITY & SAFETY:
 - Comprehensive Building Regulations management
 - 10-Year Structural Defect Insurance options
 
-CONTACT INFORMATION:
+CONTACT & GOVERNANCE:
+Director: Sathishkumar Vijayakumar (Active)
 Address: Flat 30 Webley Court, 3 Sten Close, Enfield, England, EN3 6WX
 Email: satx@satxltd.com
 Phone: 07796 729271
