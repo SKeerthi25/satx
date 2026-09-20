@@ -25,9 +25,9 @@ export interface QuoteFormData {
   agreeTerms: boolean;
 }
 
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_wyf43s6';
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_1gj2dqc';
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'QzzZ20Lo0pV55DokX';
 const TARGET_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'satx@satxltd.com';
 
 export const isEmailJsConfigured = (): boolean => {
