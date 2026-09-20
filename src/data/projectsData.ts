@@ -245,5 +245,249 @@ export const PROJECTS_LIST: ProjectItem[] = [
       'Integrated smart lighting controlled via smartphone',
       'Extends living space outdoors year-round'
     ]
+  },
+  {
+    id: 'enfield-luxury-residential-expansion',
+    title: 'Enfield Luxury Residential Extension & Groundwork',
+    category: 'Extensions',
+    location: 'Enfield, Greater London',
+    completionYear: '2025',
+    duration: '7 Months',
+    shortDesc: 'A bespoke structural extension and full ground floor reconfiguration featuring architectural glazing and deep raft foundations.',
+    fullOverview: 'SATX LTD delivered this premier domestic extension in Enfield from initial groundworks to turnkey completion. The build included complex structural steel beam installation to create an uninterrupted open-plan living environment with high-performance insulation and panoramic garden views.',
+    heroImage: '/photos/image-copy-2.png',
+    beforeImage: '/photos/image-copy-4.png',
+    afterImage: '/photos/image-copy-2.png',
+    duringImage: '/photos/image-copy-3.png',
+    gallery: [
+      '/photos/image-copy-2.png',
+      '/photos/image-copy.png',
+      '/photos/image-copy-10.png',
+      '/photos/image-copy-11.png',
+      '/photos/image-copy-5.png',
+      '/photos/image-copy-7.png'
+    ],
+    challenge: 'Excavation and foundation installation adjacent to existing boundary walls with strict party wall requirements.',
+    solution: 'Designed reinforced concrete trench foundations and precision structural steel frame shoring to ensure complete structural stability throughout the build.',
+    scopeOfWork: [
+      'Site preparation, earth removal & reinforced concrete foundations',
+      'Structural steel RSJ calculation, delivery & crane lifting',
+      'Cavity wall insulation and architectural exterior brickwork',
+      'Slimline aluminium sliding doors and structural rooflight insertion',
+      'Underfloor heating, electrical first-fix, and bespoke plaster finishes'
+    ],
+    materialsUsed: [
+      'British Standard Structural Grade S355 Steel',
+      'Class A Engineering Bricks & Thermalite Blocks',
+      'High-Performance Rigid PIR Insulation',
+      'Architectural Powder-Coated Aluminium Systems'
+    ],
+    keyHighlights: [
+      'Full Building Regulations approval with zero non-conformances',
+      'Added 55 sqm of bespoke modern living space',
+      'Completed to exact client architectural specifications'
+    ]
+  },
+  {
+    id: 'bespoke-architectural-modernisation',
+    title: 'Bespoke Architectural Domestic Modernisation',
+    category: 'Renovations',
+    location: 'Greater London Area',
+    completionYear: '2025',
+    duration: '5 Months',
+    shortDesc: 'Comprehensive interior transformation incorporating open-plan spatial design, acoustic partitioning, and luxury craftsmanship.',
+    fullOverview: 'A full interior and structural renovation that revitalized an existing domestic property into a light-filled contemporary sanctuary. SATX LTD handled structural knock-throughs, complete rewiring, underfloor heating, and custom joinery throughout.',
+    heroImage: '/photos/image-copy.png',
+    beforeImage: '/photos/image-copy-5.png',
+    afterImage: '/photos/image-copy.png',
+    duringImage: '/photos/image-copy-7.png',
+    gallery: [
+      '/photos/image-copy.png',
+      '/photos/image-copy-11.png',
+      '/photos/image-copy-8.png',
+      '/photos/image.png',
+      '/photos/image-copy-3.png'
+    ],
+    challenge: 'Reorganizing internal layouts while maintaining structural integrity of upper floor joists.',
+    solution: 'Engineered twin parallel flitch beams seamlessly concealed within floor voids to maintain flat, modern ceiling lines.',
+    scopeOfWork: [
+      'Load-bearing internal wall removal & structural steel insertion',
+      'Sub-floor acoustic insulation & sound-dampening membrane',
+      'Smart ambient lighting circuit installation & rewiring',
+      'Custom joinery, architectural skirtings, and designer decor'
+    ],
+    materialsUsed: [
+      'Engineered Flitch Beams & Structural Timber',
+      'Acoustic Plasterboard & Soundproofing Quilt',
+      'Premium European Engineered Oak Flooring',
+      'Low-VOC Eco-Friendly Architectural Finishes'
+    ],
+    keyHighlights: [
+      'Significantly improved thermal and acoustic performance',
+      'Created seamless flush ceiling transitions with no bulkheads',
+      'Finished on schedule within agreed budget envelope'
+    ]
+  },
+  {
+    id: 'contemporary-domestic-new-build-structure',
+    title: 'Contemporary Domestic Residence & Superstructure',
+    category: 'New Builds',
+    location: 'Hertfordshire / North London',
+    completionYear: '2025',
+    duration: '12 Months',
+    shortDesc: 'Turnkey residential domestic construction showcasing modern exterior elevations and sustainable envelope engineering.',
+    fullOverview: 'From greenfield groundworks to final interior detailing, this high-performance domestic residence was constructed with focus on airtightness, structural longevity, and cutting-edge design.',
+    heroImage: '/photos/image-copy-10.png',
+    beforeImage: '/photos/image-copy-8.png',
+    afterImage: '/photos/image-copy-10.png',
+    duringImage: '/photos/image.png',
+    gallery: [
+      '/photos/image-copy-10.png',
+      '/photos/image-copy-2.png',
+      '/photos/image-copy-4.png',
+      '/photos/image-copy-7.png',
+      '/photos/image-copy-11.png'
+    ],
+    challenge: 'High groundwater table requiring advanced waterproofing and tanking solutions.',
+    solution: 'Specified and applied a dual-layer Type A and Type B barrier waterproofing system with external perimeter French drainage.',
+    scopeOfWork: [
+      'Deep foundation excavation & reinforced concrete retaining walls',
+      'Weather-tight structural envelope erection',
+      'High-performance triple-glazed window suite installation',
+      'Full mechanical, electrical, and renewable heat pump integration'
+    ],
+    materialsUsed: [
+      'Waterproof Concrete Additive System',
+      'A++ Certified Architectural Glazing Units',
+      'Natural Slate & Standing Seam Zinc Roofing',
+      'FSC-Certified Structural Timber Framing'
+    ],
+    keyHighlights: [
+      'Exceptional airtightness rating surpassing standard building codes',
+      'Integrated solar PV and air-source heat pump heating',
+      'Impeccable structural finish delivered by SATX trade specialists'
+    ]
+  },
+  {
+    id: 'luxury-interior-living-refurbishment',
+    title: 'Luxury Interior & Living Space Refurbishment',
+    category: 'Interiors',
+    location: 'London Residential Sector',
+    completionYear: '2025',
+    duration: '4 Months',
+    shortDesc: 'Refined interior fit-out featuring bespoke architectural joinery, designer finishes, and precision craftsmanship.',
+    fullOverview: 'An exquisite domestic interior refurbishment focusing on modern living comfort, high-specification materials, and flawless decorative finishes designed for contemporary family life.',
+    heroImage: '/photos/image-copy-11.png',
+    beforeImage: '/photos/image-copy-3.png',
+    afterImage: '/photos/image-copy-11.png',
+    duringImage: '/photos/image-copy-5.png',
+    gallery: [
+      '/photos/image-copy-11.png',
+      '/photos/image.png',
+      '/photos/image-copy.png',
+      '/photos/image-copy-8.png',
+      '/photos/image-copy-2.png'
+    ],
+    challenge: 'Integrating modern HVAC and smart home cabling discreetly without visible conduit or trunking.',
+    solution: 'Designed bespoke dropped perimeter shadow-gap soffits with indirect LED coving to house all conduits seamlessly.',
+    scopeOfWork: [
+      'Full internal strip-out and structural realignment',
+      'Drylining, skimming, and flawless plaster finish',
+      'Underfloor heating manifold installation and screeding',
+      'Bespoke media wall joinery and integrated storage solutions'
+    ],
+    materialsUsed: [
+      'Moisture-Resistant Acoustic Plasterboard',
+      'Natural Stone Marble & Porcelain Tiles',
+      'Custom Architectural Ironmongery',
+      'Designer Architectural Lighting Fixtures'
+    ],
+    keyHighlights: [
+      'Showroom-level finishing standards across every room',
+      '100% concealed services and cabling',
+      'Delighted domestic client testimonial'
+    ]
   }
 ];
+
+export interface UploadedPhotoItem {
+  id: string;
+  src: string;
+  title: string;
+  category: 'Structural' | 'Extensions' | 'Renovations' | 'Interiors' | 'On-Site Work';
+  description: string;
+}
+
+export const UPLOADED_PHOTOS_GALLERY: UploadedPhotoItem[] = [
+  {
+    id: 'photo-1',
+    src: '/photos/image-copy-2.png',
+    title: 'Contemporary Residential Superstructure',
+    category: 'Structural',
+    description: 'Bespoke structural residential development in Enfield, showcasing high-precision architectural framework.'
+  },
+  {
+    id: 'photo-2',
+    src: '/photos/image-copy.png',
+    title: 'Architectural Domestic Living Space',
+    category: 'Interiors',
+    description: 'Open-plan residential interior layout crafted with premium materials and high-end detailing.'
+  },
+  {
+    id: 'photo-3',
+    src: '/photos/image-copy-10.png',
+    title: 'Exterior Residential Elevation & Glazing',
+    category: 'Extensions',
+    description: 'Modern exterior architectural elevation with seamless indoor-outdoor transitions.'
+  },
+  {
+    id: 'photo-4',
+    src: '/photos/image-copy-11.png',
+    title: 'Interior Renovation & Living Refurbishment',
+    category: 'Renovations',
+    description: 'Full interior modernisation with bespoke finishes, ambient lighting, and timber craft.'
+  },
+  {
+    id: 'photo-5',
+    src: '/photos/image-copy-3.png',
+    title: 'Structural Masonry & Site Preparation',
+    category: 'On-Site Work',
+    description: 'Groundwork and structural brickwork progress during initial domestic build phase.'
+  },
+  {
+    id: 'photo-6',
+    src: '/photos/image-copy-4.png',
+    title: 'Groundwork & Foundation Engineering',
+    category: 'On-Site Work',
+    description: 'Reinforced concrete foundation installation conforming to UK building regulations.'
+  },
+  {
+    id: 'photo-7',
+    src: '/photos/image-copy-5.png',
+    title: 'Structural Steelwork & Internal Knock-Through',
+    category: 'Structural',
+    description: 'Installation of heavy load-bearing structural steel beams for open-plan living.'
+  },
+  {
+    id: 'photo-8',
+    src: '/photos/image-copy-7.png',
+    title: 'Wall Framing & Drylining Progression',
+    category: 'On-Site Work',
+    description: 'Precision timber studwork framing and internal acoustic insulation installation.'
+  },
+  {
+    id: 'photo-9',
+    src: '/photos/image-copy-8.png',
+    title: 'Roof Structure & Water-Tight Envelope',
+    category: 'Structural',
+    description: 'Carpentry roof rafter assembly and weatherproof membrane application.'
+  },
+  {
+    id: 'photo-10',
+    src: '/photos/image.png',
+    title: 'First-Fix Services & Architectural Detailing',
+    category: 'On-Site Work',
+    description: 'Electrical and plumbing first-fix integration within structural cavities.'
+  }
+];
+

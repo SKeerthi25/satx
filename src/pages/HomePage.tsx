@@ -1,6 +1,6 @@
 import React from 'react';
 import { SERVICES_LIST } from '../data/servicesData';
-import { PROJECTS_LIST } from '../data/projectsData';
+import { PROJECTS_LIST, UPLOADED_PHOTOS_GALLERY } from '../data/projectsData';
 import { ServiceCard } from '../components/ServiceCard';
 import { ProjectCard } from '../components/ProjectCard';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
@@ -218,6 +218,65 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 5B: LIVE ON-SITE PROJECT GALLERY (AUTHENTIC PHOTOS) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F0F9FF] border border-[#BAE6FD] text-[11px] font-bold uppercase tracking-widest text-[#0284C7]">
+              <HardHat className="w-3.5 h-3.5 text-[#0284C7]" />
+              <span>Real On-Site Progress</span>
+            </div>
+            <h2 className="text-3xl font-extrabold text-[#0F172A]">Live On-Site Project Gallery</h2>
+            <p className="text-xs text-slate-500 max-w-xl">
+              A curated photographic record of our active residential builds, structural steel installations, groundwork engineering, and finished domestic living spaces across Enfield and London.
+            </p>
+          </div>
+          <button
+            onClick={() => onNavigate('/projects')}
+            className="satx-btn-secondary text-xs"
+          >
+            View All Projects ({PROJECTS_LIST.length}) →
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {UPLOADED_PHOTOS_GALLERY.slice(0, 8).map((photo) => (
+            <div
+              key={photo.id}
+              className="group relative rounded-2xl overflow-hidden border border-[#E2E8F0] bg-white shadow-md hover:shadow-xl transition-all duration-300 flex flex-col"
+            >
+              <div className="relative h-56 overflow-hidden bg-slate-900">
+                <SafeImage
+                  src={photo.src}
+                  alt={photo.title}
+                  category="construction"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#0F172A]/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-bold text-[#38BDF8] border border-white/10 uppercase tracking-wider">
+                  {photo.category}
+                </div>
+              </div>
+              <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
+                <div>
+                  <h4 className="font-bold text-sm text-[#0F172A] group-hover:text-[#0284C7] transition-colors">
+                    {photo.title}
+                  </h4>
+                  <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                    {photo.description}
+                  </p>
+                </div>
+                <button
+                  onClick={() => onNavigate('/projects')}
+                  className="text-xs font-bold text-[#0284C7] hover:text-[#0369A1] flex items-center gap-1 pt-1 self-start"
+                >
+                  Explore Portfolio <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

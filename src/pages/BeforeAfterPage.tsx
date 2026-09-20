@@ -10,7 +10,16 @@ interface PageProps {
 export const BeforeAfterPage: React.FC<PageProps> = ({ onNavigate }) => {
   const [activeCategory, setActiveCategory] = useState<string>('Home Renovations');
 
-  const categories = ['Home Renovations', 'Extensions', 'Kitchens', 'Bathrooms', 'Interiors', 'Exterior Improvements'];
+  const categories = [
+    'Home Renovations',
+    'Extensions',
+    'Enfield Residential Extension',
+    'Bespoke Modern Living',
+    'Kitchens',
+    'Bathrooms',
+    'Interiors',
+    'Exterior Improvements'
+  ];
 
   const showcaseData: Record<string, { before: string; after: string; title: string; desc: string }> = {
     'Home Renovations': {
@@ -24,6 +33,18 @@ export const BeforeAfterPage: React.FC<PageProps> = ({ onNavigate }) => {
       after: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
       title: 'Rear Glass Pavilion Extension',
       desc: 'Knock-through load-bearing brick wall replaced with 450mm RSJ gantry beam and structural glass lanterns.'
+    },
+    'Enfield Residential Extension': {
+      before: '/photos/image-copy-4.png',
+      after: '/photos/image-copy-2.png',
+      title: 'Enfield Residential Extension & Groundwork',
+      desc: 'From initial trench foundation excavation to completed architectural superstructure.'
+    },
+    'Bespoke Modern Living': {
+      before: '/photos/image-copy-3.png',
+      after: '/photos/image-copy-11.png',
+      title: 'Bespoke Interior Modernisation & Refurbishment',
+      desc: 'Full internal strip-out, rewiring, and high-specification architectural living space completion.'
     },
     'Kitchens': {
       before: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
