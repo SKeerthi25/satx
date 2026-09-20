@@ -42,17 +42,53 @@ export const sendContactEmail = async (data: ContactFormData) => {
     throw new Error('EmailJS configuration missing. Please provide your Service ID, Template ID, and Public Key in .env');
   }
 
+  const formattedMessage = `
+--- DIRECT CONTACT ENQUIRY ---
+Client Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
+Location: ${data.location || 'Not specified'}
+
+Project Type: ${data.projectType}
+Property Type: ${data.propertyType}
+Estimated Budget: ${data.estimatedBudget}
+Preferred Start: ${data.preferredStart}
+
+Client Message / Scope:
+${data.message}
+------------------------------
+`.trim();
+
   const templateParams = {
+    // Recipient
     to_email: TARGET_EMAIL,
+
+    // Client Name (all standard aliases)
+    name: data.name,
     from_name: data.name,
+    user_name: data.name,
+
+    // Client Email & Reply-To (all standard aliases)
+    email: data.email,
     from_email: data.email,
+    user_email: data.email,
+    reply_to: data.email,
+
+    // Phone
     phone: data.phone,
+    contact_number: data.phone,
+
+    // Form Specific Fields
     location: data.location || 'Not specified',
     project_type: data.projectType,
     property_type: data.propertyType,
     estimated_budget: data.estimatedBudget,
     preferred_start: data.preferredStart,
-    message: data.message,
+
+    // The core message body that EmailJS templates print in {{message}}
+    message: formattedMessage,
+
+    // Subject
     subject: `New Contact Enquiry from ${data.name} - SATX LTD`
   };
 
@@ -67,17 +103,54 @@ export const sendQuoteEmail = async (data: QuoteFormData) => {
     throw new Error('EmailJS configuration missing. Please provide your Service ID, Template ID, and Public Key in .env');
   }
 
+  const formattedQuoteSummary = `
+--- NEW QUOTE REQUEST ---
+Client Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
+Location: ${data.location || 'Not specified'}
+
+Project Type: ${data.projectType}
+Property Type: ${data.propertyType}
+Estimated Budget: ${data.estimatedBudget}
+Preferred Start Date: ${data.startDate}
+
+Project Description / Scope:
+${data.description || 'No additional scope details provided.'}
+-------------------------
+`.trim();
+
   const templateParams = {
+    // Recipient
     to_email: TARGET_EMAIL,
+
+    // Client Name (all standard aliases)
+    name: data.name,
     from_name: data.name,
+    user_name: data.name,
+
+    // Client Email & Reply-To (all standard aliases)
+    email: data.email,
     from_email: data.email,
+    user_email: data.email,
+    reply_to: data.email,
+
+    // Phone
     phone: data.phone,
+    contact_number: data.phone,
+
+    // Form Specific Fields
+    location: data.location,
     project_type: data.projectType,
     property_type: data.propertyType,
-    location: data.location,
     estimated_budget: data.estimatedBudget,
     start_date: data.startDate,
     description: data.description || 'No additional scope provided',
+
+    // The core message body that EmailJS templates print in {{message}}
+    message: formattedQuoteSummary,
+
+    // Subject
     subject: `New Quote Request (${data.projectType}) from ${data.name} - SATX LTD`
   };
 
