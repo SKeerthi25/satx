@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { CTASection } from '../components/CTASection';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { sendContactEmail, isEmailJsConfigured } from '../services/emailService';
 
 interface PageProps {
   onNavigate: (path: string) => void;
@@ -9,6 +10,8 @@ interface PageProps {
 
 export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,9 +24,27 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      await sendContactEmail(formData);
+      setSubmitted(true);
+    } catch (err: unknown) {
+      console.error('Contact form submission error:', err);
+      if (!isEmailJsConfigured()) {
+        setErrorMessage(
+          'EmailJS credentials are not yet configured in your .env file. Please add your VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY.'
+        );
+      } else {
+        const errorText = err instanceof Error ? err.message : 'Failed to send message. Please try again or email satx@satxltd.com directly.';
+        setErrorMessage(errorText);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -119,23 +140,36 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
               <div className="p-8 text-center bg-emerald-50 border border-emerald-200 rounded-xl space-y-4">
                 <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
                 <h4 className="font-bold text-lg text-emerald-950">Message Sent Successfully</h4>
-                <p className="text-xs text-emerald-800">Thank you for contacting SATX LTD. A representative will respond within 24 business hours.</p>
+                <p className="text-xs text-emerald-800">
+                  Thank you for contacting SATX LTD. Your message has been forwarded to{' '}
+                  <span className="font-bold">satx@satxltd.com</span>. A senior representative will respond within 24 business hours.
+                </p>
                 <button onClick={() => setSubmitted(false)} className="satx-btn-secondary text-xs">
                   Send Another Message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5">
+                    <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <p className="font-semibold">{errorMessage}</p>
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-slate-700">Full Name *</label>
                     <input
                       type="text"
                       required
+                      disabled={isSubmitting}
                       placeholder="e.g. Sarah Jenkins"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7]"
+                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7] disabled:opacity-60"
                     />
                   </div>
                   <div className="space-y-1">
@@ -143,10 +177,11 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
                     <input
                       type="email"
                       required
+                      disabled={isSubmitting}
                       placeholder="e.g. sarah@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7]"
+                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7] disabled:opacity-60"
                     />
                   </div>
                 </div>
@@ -157,20 +192,22 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
                     <input
                       type="tel"
                       required
+                      disabled={isSubmitting}
                       placeholder="e.g. +44 7000 000000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7]"
+                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7] disabled:opacity-60"
                     />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-slate-700">Location / Postcode</label>
                     <input
                       type="text"
+                      disabled={isSubmitting}
                       placeholder="e.g. Enfield / Greater London area"
                       value={formData.location}
                       onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7]"
+                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7] disabled:opacity-60"
                     />
                   </div>
                 </div>
@@ -179,9 +216,10 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-slate-700">Project Type</label>
                     <select
+                      disabled={isSubmitting}
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7]"
+                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7] disabled:opacity-60"
                     >
                       <option>New Build Homes</option>
                       <option>House Extensions</option>
@@ -195,9 +233,10 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-slate-700">Estimated Budget</label>
                     <select
+                      disabled={isSubmitting}
                       value={formData.estimatedBudget}
                       onChange={(e) => setFormData({ ...formData, estimatedBudget: e.target.value })}
-                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7]"
+                      className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7] disabled:opacity-60"
                     >
                       <option>Under £50k</option>
                       <option>£50k - £100k</option>
@@ -213,15 +252,29 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate }) => {
                   <textarea
                     rows={4}
                     required
+                    disabled={isSubmitting}
                     placeholder="Provide a brief overview of your property, timeframe, or specific architectural requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7]"
+                    className="w-full p-3 border border-[#E2E8F0] rounded-xl text-xs focus:ring-2 focus:ring-[#0284C7] disabled:opacity-60"
                   />
                 </div>
 
-                <button type="submit" className="satx-btn-accent text-xs py-3 px-6 w-full">
-                  Send Enquiry <Send className="w-4 h-4" />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="satx-btn-accent text-xs py-3 px-6 w-full flex items-center justify-center gap-2 disabled:opacity-60"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending to satx@satxltd.com...
+                    </>
+                  ) : (
+                    <>
+                      Send Enquiry <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </form>
             )}

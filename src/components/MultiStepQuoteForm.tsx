@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CheckCircle2, ArrowRight, ArrowLeft, Building2, Home, Maximize2, Hammer, ArrowUpRight, RefreshCw, Calendar, DollarSign, MapPin, Send } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ArrowLeft, Building2, Home, Maximize2, Hammer, ArrowUpRight, RefreshCw, Calendar, DollarSign, MapPin, Send, Loader2, AlertCircle } from 'lucide-react';
+import { sendQuoteEmail, isEmailJsConfigured } from '../services/emailService';
 
 interface MultiStepQuoteFormProps {
   onComplete?: () => void;
@@ -8,6 +9,8 @@ interface MultiStepQuoteFormProps {
 export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     projectType: 'New Build Homes',
@@ -43,10 +46,28 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
     if (currentStep > 1) setCurrentStep(prev => prev - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    if (onComplete) onComplete();
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      await sendQuoteEmail(formData);
+      setSubmitted(true);
+      if (onComplete) onComplete();
+    } catch (err: unknown) {
+      console.error('Quote form submission error:', err);
+      if (!isEmailJsConfigured()) {
+        setErrorMessage(
+          'EmailJS credentials are not yet configured in your .env file. Please add your VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY.'
+        );
+      } else {
+        const errorText = err instanceof Error ? err.message : 'Failed to send quote request. Please try again or email satx@satxltd.com directly.';
+        setErrorMessage(errorText);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -59,7 +80,8 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
           <span className="text-xs font-bold uppercase tracking-widest text-[#C59B27]">Enquiry Submitted</span>
           <h3 className="text-2xl font-bold text-[#0F172A]">Quote Request Received</h3>
           <p className="text-sm text-slate-600">
-            Thank you, <span className="font-bold text-[#0F172A]">{formData.name || 'Valued Client'}</span>. Our senior quantity surveying team will review your project parameters and contact you within 24 business hours.
+            Thank you, <span className="font-bold text-[#0F172A]">{formData.name || 'Valued Client'}</span>. Your quote request has been sent to{' '}
+            <span className="font-bold">satx@satxltd.com</span>. Our senior quantity surveying team will review your project parameters and contact you within 24 business hours.
           </p>
         </div>
         <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-slate-500 text-left space-y-1">
@@ -235,16 +257,27 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
         {currentStep === 7 && (
           <div className="space-y-4 animate-in fade-in">
             <h4 className="text-lg font-bold text-[#0F172A]">Step 7: Contact Information</h4>
+
+            {errorMessage && (
+              <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <p className="font-semibold">{errorMessage}</p>
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700">Full Name *</label>
                 <input
                   type="text"
                   required
+                  disabled={isSubmitting}
                   placeholder="e.g. John Smith"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full p-3 border border-[#E2E8F0] rounded-xl text-sm focus:ring-2 focus:ring-[#C59B27]"
+                  className="w-full p-3 border border-[#E2E8F0] rounded-xl text-sm focus:ring-2 focus:ring-[#C59B27] disabled:opacity-60"
                 />
               </div>
               <div className="space-y-1">
@@ -252,10 +285,11 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
                 <input
                   type="email"
                   required
+                  disabled={isSubmitting}
                   placeholder="e.g. client@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full p-3 border border-[#E2E8F0] rounded-xl text-sm focus:ring-2 focus:ring-[#C59B27]"
+                  className="w-full p-3 border border-[#E2E8F0] rounded-xl text-sm focus:ring-2 focus:ring-[#C59B27] disabled:opacity-60"
                 />
               </div>
               <div className="space-y-1 sm:col-span-2">
@@ -263,10 +297,11 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
                 <input
                   type="tel"
                   required
+                  disabled={isSubmitting}
                   placeholder="e.g. +44 7000 000000"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full p-3 border border-[#E2E8F0] rounded-xl text-sm focus:ring-2 focus:ring-[#C59B27]"
+                  className="w-full p-3 border border-[#E2E8F0] rounded-xl text-sm focus:ring-2 focus:ring-[#C59B27] disabled:opacity-60"
                 />
               </div>
             </div>
@@ -274,6 +309,7 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
               <input
                 type="checkbox"
                 id="terms"
+                disabled={isSubmitting}
                 checked={formData.agreeTerms}
                 onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
                 className="w-4 h-4 text-[#C59B27] rounded"
@@ -290,8 +326,9 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
           {currentStep > 1 ? (
             <button
               type="button"
+              disabled={isSubmitting}
               onClick={prevStep}
-              className="satx-btn-secondary text-xs py-2.5 px-4"
+              className="satx-btn-secondary text-xs py-2.5 px-4 disabled:opacity-50"
             >
               <ArrowLeft className="w-4 h-4" /> Back
             </button>
@@ -308,9 +345,19 @@ export const MultiStepQuoteForm: React.FC<MultiStepQuoteFormProps> = ({ onComple
           ) : (
             <button
               type="submit"
-              className="satx-btn-accent text-xs py-2.5 px-6 ml-auto bg-emerald-600 hover:bg-emerald-700 border-emerald-600"
+              disabled={isSubmitting}
+              className="satx-btn-accent text-xs py-2.5 px-6 ml-auto bg-emerald-600 hover:bg-emerald-700 border-emerald-600 flex items-center gap-2 disabled:opacity-60"
             >
-              Submit Quote Request <Send className="w-4 h-4" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Sending to satx@satxltd.com...
+                </>
+              ) : (
+                <>
+                  Submit Quote Request <Send className="w-4 h-4" />
+                </>
+              )}
             </button>
           )}
         </div>
